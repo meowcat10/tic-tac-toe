@@ -4,22 +4,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel = "stylesheet" type = "text/css" href = "CSS/style.css">
     <script src="JS/script.js" defer></script>
-    <title>Tic-Tac-Toe</title>
+    <script src="https://kit.fontawesome.com/dcf3dd2e52.js" crossorigin="anonymous"></script>    <title>Tic-Tac-Toe</title>
   </head>
   <body>
     <p id = "gameCursor"></p>
     <p class="gameTitle">Tic Tac Toe</p>
     <p class="gameResult">
       Score<br>
-      X: O: <br>
+      X: O:
     </p>
     <section class="btnContainer">
-      <button>Reset</button>
-      <button>Cursor: OFF</button>
+      <button title = "Clear all ~ dblclick for complete reset!">Reset</button>
+      <button title = "Enable/Disable a cursor who shows the current player">Cursor</button>
       <label for="playerTurn"></label>
       <select name="Player" id="playerTurn">
         <option value="X">Player (X)</option>
         <option value="O">Player (O)</option>
+        <!-- <option value="Computer">Computer</option> -->
       </select>
     </section>
     <section class="gameContainer">
@@ -33,6 +34,12 @@
       <div class="cell"></div>
       <div class="cell"></div>
     </section>
+    <div class="socials">
+      <a href="https://github.com/meowcat10/tic-tac-toe" target="_blank">
+        <i class="fa-brands fa-github"></i>
+        <p>Github</p>
+      </a>
+    </div>
 
   </body>
 </html>

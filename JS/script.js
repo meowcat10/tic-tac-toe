@@ -8,8 +8,14 @@ const gameTurn = document.getElementById('playerTurn');
 const cursor = document.querySelector('#gameCursor');
 let cursorStatus = "OFF";
 
+const clearDuration = 2500;
+
 let X_wins = 0;
 let O_wins = 0;
+// let Computer_wins = 0;
+
+/* Game Status */
+let gameOver = false;
 
 const winCombinations = [
     [0, 1, 2], // Line ~ 1
@@ -25,22 +31,34 @@ const winCombinations = [
 ];
 
 
-setInterval(() => {
-    gameText.innerHTML = `Score<br>X: ${X_wins} O: ${O_wins}`;
-}, 2500);
+/* Show score (on load) */
+gameText.innerHTML = `Score<br>X: ${X_wins} O: ${O_wins}`;
+
 cells.forEach(cell => {
     cell.addEventListener('click', () => {
-        if (gameTurn.value === 'X' && cell.innerHTML === ''){
-            cell.innerHTML = gameTurn.value;
-            gameTurn.value = 'O'
-        } else if (gameTurn.value === 'O' && cell.innerHTML === ''){
-            cell.innerHTML = gameTurn.value;
-            gameTurn.value = 'X';
-        }
+        if (gameOver === false){
+            if (gameTurn.value === 'X' && cell.innerHTML === ''){
+                cell.innerHTML = gameTurn.value;
+                gameTurn.value = 'O'
+            } else if (gameTurn.value === 'O' && cell.innerHTML === ''){
+                cell.innerHTML = gameTurn.value;
+                gameTurn.value = 'X';
+            }
+        } else { return }
         checkGame();
     })
 })
 
+
+/*
+    gameTurn.addEventListener('click', () => {
+        if (gameTurn.value === 'Computer'){
+            gameText.innerHTML += `<br>You are now playing against the computer!`;
+            gameTurn.value = 'X';
+            setTimeout(clearCells, 4000);
+        }
+    })
+*/
 
 
 
@@ -53,15 +71,20 @@ buttons.forEach(btn => {
         }
 
         /* CURSOR */
-        if (btn.innerHTML === 'Cursor: ON'){
-            btn.innerHTML = 'Cursor: OFF';
-            cursorStatus = "OFF";
-        } else if (btn.innerHTML === 'Cursor: OFF'){
-            cursorStatus = "ON";
-            btn.innerHTML = 'Cursor: ON';
+        if (btn.innerHTML === 'Cursor'){
+            if (cursorStatus === "ON"){
+                cursorStatus = "OFF";
+            } else if (cursorStatus === "OFF"){
+                cursorStatus = "ON";
+            }
         }
-
-        console.log(btn.innerHTML);
+    })
+    btn.addEventListener('dblclick', () => {
+        if (btn.innerHTML === 'Reset'){
+            O_wins = 0;
+            X_wins = 0;
+            clearCells();
+        }
     })
 })
 
@@ -76,10 +99,11 @@ function checkGame() {
         let valC = cells[c].innerHTML;
 
         if (valA === valB && valA === valC && valA !== ''){
-            gameText.innerHTML += `<br>The winner is ${valA}!`;
+            gameOver = true; // ~ Stops input from user
+            showText(valA); // Shows winner (text)
             if (valA === 'X'){ X_wins++ }
             if (valA === 'O'){ O_wins++ }
-            setTimeout(clearCells, 2000);
+            setTimeout(clearCells, clearDuration);
             return valA;
         }
     }
@@ -89,12 +113,13 @@ function checkGame() {
             checkCells++;
         }
         if (checkCells === 9){
-            gameText.innerHTML += `<br>Draw!`;
-            setTimeout(clearCells, 2000);
+            showText('Draw');
+            setTimeout(clearCells, clearDuration);
         }
     })
     return null;
 }
+
 
 
 
@@ -116,7 +141,22 @@ function checkGame() {
 
 
 function clearCells(){
+    /* Update score - then clear */
+    gameText.innerHTML = `Score<br>X: ${X_wins} O: ${O_wins}`
         cells.forEach(cell => {
             cell.innerHTML = '';
         })
+    gameOver = false;
+}
+
+
+function showText(input){
+    /* Winner || Draw */
+    if (input === 'X' || input === 'O'){
+        gameText.innerHTML += `<br>The winner is ${input}!`;
+    }
+    if (input === 'Draw'){
+        gameText.innerHTML += `<br>Draw!`;
+    }
+
 }

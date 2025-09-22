@@ -26,3 +26,16 @@ body{
     font-family: Arial, sans-serif;
 
 }
+
+
+
+.socials, a, i{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    gap:0.2rem;
+    text-decoration: none;
+    color:black;
+    font-size:0.85rem;
+}
