@@ -1,0 +1,83 @@
+
+
+.gameContainer{
+    width:300px;
+    height:300px;
+    border:3px solid black;
+
+    /* ? Wood Texture ? */
+    background-image: url("../Pictures/wood-surface.jpg");
+
+    /* ! B2925F */
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .cell {
+        display:flex;
+        width: 80px;
+        height: 80px;
+        background-image: url("../Pictures/stone-surface.jpg");
+
+        /*! 7A6444 */
+        box-shadow: 2px 2px 2px black inset;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        &:hover{
+            cursor:pointer;
+        }
+    }
+}
+
+
+
+.btnContainer{
+    display:flex;
+    gap:var(--buttonGap);
+    margin-bottom:0.75rem;
+
+    button{
+        color:white;
+        letter-spacing: 0.1rem;
+        text-align: center;
+        border-radius:0.35rem;
+        padding:0.3rem;
+        box-shadow: 2px 1px 1px black;
+        background-color:grey;
+    }
+}
+
+
+/* ? Grouping Styles */
+.cell, .gameContainer{
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+
+.gameTitle{
+    font-size:var(--gametitle_fontSize);
+    font-family: "Bradley Hand ITC", cursive;
+    font-weight:bold;
+    letter-spacing: var(--gametitle_letterSpacing);
+}
+
+.gameAction{
+    font-family: arial, sans-serif;
+    font-weight:bold;
+}
+
+#gameCursor{
+    display:inline-block;
+    position:fixed;
+    transform(translate(-50%, -50%));
+    color:yellow;
+    font-weight:bold;
+    font-size:var(--playerCursor_fontSize);
+}
+

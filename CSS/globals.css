@@ -1,0 +1,18 @@
+
+:root{
+    /* Buttons */
+    --buttonGap:1.20rem;
+
+
+
+    /* Game */
+
+
+    /* Text ~ Title */
+    --gametitle_fontSize:2rem;
+    --gametitle_letterSpacing:1rem;
+
+    /* Cursor */
+    --playerCursor_fontSize:2rem;
+
+}

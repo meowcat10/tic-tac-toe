@@ -1,0 +1,28 @@
+@import '../CSS/globals.css';
+@import '../CSS/gameComponents.css';
+
+body{
+    /* Removes default spacing from the website */
+    margin:0;
+    padding:0;
+
+    /* Makes the content appear in center */
+    display:flex;
+    justify-content: center;
+    flex-direction:column;
+    align-items: center;
+    background: url("../Pictures/background.webp");
+    background-size: cover;
+    backdrop-filter: blur(5px);
+}
+
+
+*{
+    /* ? Adds a soft transition when
+       ? interacting with the game */
+
+    transition: all 0.5s ease;
+    user-select: none;
+    font-family: Arial, sans-serif;
+
+}
