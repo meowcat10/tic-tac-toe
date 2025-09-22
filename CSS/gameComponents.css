@@ -67,8 +67,9 @@
     letter-spacing: var(--gametitle_letterSpacing);
 }
 
-.gameAction{
-    font-family: arial, sans-serif;
+.gameResult{
+    font-family: "Droid Sans", cursive;
+    text-align: center;
     font-weight:bold;
 }
 
