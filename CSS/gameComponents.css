@@ -6,7 +6,7 @@
     border:3px solid black;
 
     /* ? Wood Texture ? */
-    background-image: url("../Pictures/wood-surface.jpg");
+    background-image: url("../Files/Pictures/wood-surface.jpg");
 
     /* ! B2925F */
     display:grid;
@@ -16,7 +16,7 @@
         display:flex;
         width: 80px;
         height: 80px;
-        background-image: url("../Pictures/stone-surface.jpg");
+        background-image: url("../Files/Pictures/stone-surface.jpg");
 
         /*! 7A6444 */
         box-shadow: 2px 2px 2px black inset;

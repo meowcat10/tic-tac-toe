@@ -44,6 +44,7 @@ cells.forEach(cell => {
                 cell.innerHTML = gameTurn.value;
                 gameTurn.value = 'X';
             }
+            playSound('Files/Sound/playerClick.mp3');
         } else { return }
         checkGame();
     })
@@ -78,6 +79,7 @@ buttons.forEach(btn => {
                 cursorStatus = "ON";
             }
         }
+        playSound('Files/Sound/btnClick.mp3');
     })
     btn.addEventListener('dblclick', () => {
         if (btn.innerHTML === 'Reset'){
@@ -85,6 +87,7 @@ buttons.forEach(btn => {
             X_wins = 0;
             clearCells();
         }
+        playSound('Files/Sound/dblClick.mp3');
     })
 })
 
@@ -100,6 +103,7 @@ function checkGame() {
 
         if (valA === valB && valA === valC && valA !== ''){
             gameOver = true; // ~ Stops input from user
+            playSound('Files/Sound/winning-sound-effect.mp3');
             showText(valA); // Shows winner (text)
             if (valA === 'X'){ X_wins++ }
             if (valA === 'O'){ O_wins++ }
@@ -157,6 +161,10 @@ function showText(input){
     }
     if (input === 'Draw'){
         gameText.innerHTML += `<br>Draw!`;
+        playSound('Files/Sound/error.mp3');
     }
+}
 
+function playSound(src){
+    new Audio(src).play();
 }
