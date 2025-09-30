@@ -84,12 +84,22 @@ buttons.forEach(btn => {
         playSound('Files/Sound/btnClick.mp3');
     })
     btn.addEventListener('dblclick', () => {
-        if (btn.innerHTML === 'Reset'){
-            O_wins = 0;
-            X_wins = 0;
-            clearCells();
-        }
-        playSound('Files/Sound/dblClick.mp3');
+
+        /* Safety question in case of misclick */
+        /* TIMEOUT to avoid sound not playing before pop-up */
+        playSound('Files/Sound/question-mark.mp3');
+        setTimeout(() => {
+            if (confirm('Do you wish to reset the score completely?')){
+                if (btn.innerHTML === 'Reset'){
+                    O_wins = 0;
+                    X_wins = 0;
+                    clearCells();
+                }
+                playSound('Files/Sound/dblClick.mp3');
+            } else {
+                alert('The score has not been changed.')
+            }
+        }, 250)
     })
 })
 
@@ -153,6 +163,7 @@ function clearCells(){
         cells.forEach(cell => {
             cell.innerHTML = '';
         })
+    saveScore();
     gameOver = false;
 }
 
