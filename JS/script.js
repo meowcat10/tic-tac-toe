@@ -12,7 +12,6 @@ const clearDuration = 2500;
 
 let X_wins = 0;
 let O_wins = 0;
-// let Computer_wins = 0;
 
 /* Game Status */
 let gameOver = false;
@@ -32,7 +31,22 @@ const winCombinations = [
 
 
 /* Show score (on load) */
-gameText.innerHTML = `Score<br>X: ${X_wins} O: ${O_wins}`;
+window.onload = function(){
+    let savedX = localStorage.getItem('xWins');
+    let savedO = localStorage.getItem('oWins');
+
+    if (savedX !== null && savedO !== null){
+        X_wins = parseInt(savedX);
+        O_wins = parseInt(savedO);
+    }
+    gameText.innerHTML = `Score<br>X: ${X_wins} O: ${O_wins}`;
+}
+
+function saveScore(){
+    localStorage.setItem("xWins", X_wins);
+    localStorage.setItem("oWins", O_wins);
+}
+
 
 cells.forEach(cell => {
     cell.addEventListener('click', () => {
@@ -49,18 +63,6 @@ cells.forEach(cell => {
         checkGame();
     })
 })
-
-
-/*
-    gameTurn.addEventListener('click', () => {
-        if (gameTurn.value === 'Computer'){
-            gameText.innerHTML += `<br>You are now playing against the computer!`;
-            gameTurn.value = 'X';
-            setTimeout(clearCells, 4000);
-        }
-    })
-*/
-
 
 
 /* Buttons */
@@ -107,6 +109,7 @@ function checkGame() {
             showText(valA); // Shows winner (text)
             if (valA === 'X'){ X_wins++ }
             if (valA === 'O'){ O_wins++ }
+            saveScore();
             setTimeout(clearCells, clearDuration);
             return valA;
         }
@@ -168,3 +171,6 @@ function showText(input){
 function playSound(src){
     new Audio(src).play();
 }
+
+
+
